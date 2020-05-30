@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+//option go_package = "example.com/foo/bar";
+package dog;
+
+service Dog{
+    rpc GetMyDog (GetMyDogMessage) returns (GetMyDogResponse) {}
+}
+
+message GetMyDogMessage{
+    string target_dog = 1;
+}
+
+message GetMyDogResponse{
+    string name = 1;
+    string kind = 2;
+}
