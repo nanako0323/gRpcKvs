@@ -19,8 +19,8 @@ func main() {
 	defer conn.Close()
 
 	client := pb.NewDogClient(conn)
-	message := &pb.GetMyDogMessage{TargetDog: "Ume"}
-	res, err := client.GetMyDog(context.TODO(), message)
+	message := &pb.AddMyDogMessage{Name: "Mako"}
+	res, err := client.AddMyDog(context.TODO(), message)
 
 	fmt.Printf("result:%#v \n", res)
 	fmt.Printf("error:%#v \n", err)

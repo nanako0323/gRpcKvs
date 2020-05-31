@@ -25,3 +25,10 @@ func (s *MyDogService) GetMyDog(ctx context.Context, message *pb.GetMyDogMessage
 		Kind: kind,
 	}, nil
 }
+
+// AddMyDog ... get message, and put item to dynamodb
+func (s *MyDogService) AddMyDog(ctx context.Context, message *pb.AddMyDogMessage) (*pb.AddMyDogResponse, error) {
+	return &pb.AddMyDogResponse{
+		Result: message.Name,
+	}, nil
+}
