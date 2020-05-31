@@ -1,4 +1,4 @@
-package kvs
+package query
 
 import (
 	"fmt"
