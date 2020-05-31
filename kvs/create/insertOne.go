@@ -1,10 +1,9 @@
-package main
+package create
 
 import (
 	"fmt"
 	"gogRpcKvs/kvs/models"
 	"gogRpcKvs/kvs/utils"
-	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -14,38 +13,41 @@ import (
 
 const tableName string = "Dog"
 
-func main() {
-	InsertOne()
-}
-
-// InsertOne ... insert one data to dynamoDb
-func InsertOne() {
+// InsertOne ... insert one data to dynamoDb.
+// If succeed, return true
+func InsertOne(name string, kind string) bool {
 	svc := utils.OpenDynamoDb()
 
-	data := models.Dog{Name: "Tao", Kind: "Cat"}
+	data := models.Dog{Name: name, Kind: kind}
 
-	av := mapToAttributeValue(data)
+	av, isErr := mapToAttributeValue(data)
 
-	putItem(av, svc)
+	if isErr {
+		return false
+	}
+
+	isSuccess := putItem(av, svc)
+
+	return isSuccess
 }
 
 func exitWithError(err error, msg string) {
 	fmt.Println(msg)
 	fmt.Println(err.Error())
-	os.Exit(1)
 }
 
-func mapToAttributeValue(data models.Dog) map[string]*dynamodb.AttributeValue {
+func mapToAttributeValue(data models.Dog) (map[string]*dynamodb.AttributeValue, bool) {
 	av, err := dynamodbattribute.MarshalMap(data)
 
 	if err != nil {
 		exitWithError(err, "Got error marshalling new item:")
+		return nil, true
 	}
 
-	return av
+	return av, false
 }
 
-func putItem(av map[string]*dynamodb.AttributeValue, svc *dynamodb.DynamoDB) {
+func putItem(av map[string]*dynamodb.AttributeValue, svc *dynamodb.DynamoDB) bool {
 	input := &dynamodb.PutItemInput{
 		Item:      av,
 		TableName: aws.String(tableName),
@@ -55,5 +57,8 @@ func putItem(av map[string]*dynamodb.AttributeValue, svc *dynamodb.DynamoDB) {
 
 	if puterr != nil {
 		exitWithError(puterr, "Got error calling PutItem:")
+		return false
 	}
+
+	return true
 }
