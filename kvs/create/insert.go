@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+type item struct {
+	Name string
+	Kind string
+}
+
 func main() {
 	fmt.Println("hello")
 }

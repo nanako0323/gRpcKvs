@@ -2,9 +2,9 @@ package query
 
 import (
 	"fmt"
+	"gogRpcKvs/kvs/utils"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
@@ -17,7 +17,7 @@ type dog struct {
 //FindOne ... Get Single Item from dynamoDb
 func FindOne(name string) (string, string) {
 
-	svc := openDynamoDb()
+	svc := utils.OpenDynamoDb()
 
 	ume := dog{Name: "Ume", Kind: "Mix"}
 	selctUme := selectItem(ume)
@@ -31,17 +31,6 @@ func FindOne(name string) (string, string) {
 
 	item := formatToDog(result)
 	return item.Name, item.Kind
-}
-
-func openDynamoDb() *dynamodb.DynamoDB {
-
-	sess := session.Must(session.NewSessionWithOptions(session.Options{
-		SharedConfigState: session.SharedConfigEnable,
-	}))
-
-	svc := dynamodb.New(sess)
-
-	return svc
 }
 
 func selectItem(param dog) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
