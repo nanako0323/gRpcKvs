@@ -20,7 +20,8 @@ func main() {
 
 	svc := openDynamoDb()
 
-	selctUme := selectItem("Ume", "Mix")
+	ume := Dog{Name: "Ume", Kind: "Mix"}
+	selctUme := selectItem(ume)
 
 	result, err := selctUme(svc)
 
@@ -29,18 +30,8 @@ func main() {
 		return
 	}
 
-	fmt.Println(result)
-
-	dog := &Dog{}
-
-	//musicにmapし、エラーが発生した場合
-	if err := dynamodbattribute.UnmarshalMap(result.Item, dog); err != nil {
-		fmt.Println("Unmarshal Error", err)
-		return
-	}
-
-	j, _ := json.Marshal(dog)
-	fmt.Println(string(j))
+	item := formatToString(result)
+	fmt.Println(item)
 }
 
 func openDynamoDb() *dynamodb.DynamoDB {
@@ -54,7 +45,7 @@ func openDynamoDb() *dynamodb.DynamoDB {
 	return svc
 }
 
-func selectItem(name string, kind string) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
+func selectItem(param Dog) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
 
 	return func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
 
@@ -62,14 +53,28 @@ func selectItem(name string, kind string) func(svc *dynamodb.DynamoDB) (*dynamod
 			TableName: aws.String("Dog"),
 			Key: map[string]*dynamodb.AttributeValue{
 				"Name": {
-					S: aws.String(name),
+					S: aws.String(param.Name),
 				},
 				"Kind": {
-					S: aws.String(kind),
+					S: aws.String(param.Kind),
 				},
 			},
 		}
 
 		return svc.GetItem(input)
 	}
+}
+
+func formatToString(result *dynamodb.GetItemOutput) string {
+
+	dog := &Dog{}
+
+	if err := dynamodbattribute.UnmarshalMap(result.Item, dog); err != nil {
+		fmt.Println("Unmarshal Error", err)
+		return ""
+	}
+
+	j, _ := json.Marshal(dog)
+	return string(j)
+
 }
