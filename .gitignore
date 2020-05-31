@@ -1,4 +1,2 @@
 ./gRpc/client/client.exe
 ./gRpc/server/server.exe
-
-./kvs/kvs.exe
