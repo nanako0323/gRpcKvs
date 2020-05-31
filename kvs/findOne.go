@@ -1,7 +1,6 @@
-package main
+package kvs
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -10,28 +9,28 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
-// Dog ... dynamoDb struct
-type Dog struct {
+type dog struct {
 	Name string
 	Kind string
 }
 
-func main() {
+//FindOne ... Get Single Item from dynamoDb
+func FindOne(name string) (string, string) {
 
 	svc := openDynamoDb()
 
-	ume := Dog{Name: "Ume", Kind: "Mix"}
+	ume := dog{Name: "Ume", Kind: "Mix"}
 	selctUme := selectItem(ume)
 
 	result, err := selctUme(svc)
 
 	if err != nil {
 		fmt.Println("GetItem Error", err)
-		return
+		return "", ""
 	}
 
-	item := formatToString(result)
-	fmt.Println(item)
+	item := formatToDog(result)
+	return item.Name, item.Kind
 }
 
 func openDynamoDb() *dynamodb.DynamoDB {
@@ -45,7 +44,7 @@ func openDynamoDb() *dynamodb.DynamoDB {
 	return svc
 }
 
-func selectItem(param Dog) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
+func selectItem(param dog) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
 
 	return func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
 
@@ -65,16 +64,15 @@ func selectItem(param Dog) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput
 	}
 }
 
-func formatToString(result *dynamodb.GetItemOutput) string {
+func formatToDog(result *dynamodb.GetItemOutput) dog {
 
-	dog := &Dog{}
+	one := &dog{}
 
-	if err := dynamodbattribute.UnmarshalMap(result.Item, dog); err != nil {
+	if err := dynamodbattribute.UnmarshalMap(result.Item, one); err != nil {
 		fmt.Println("Unmarshal Error", err)
-		return ""
+		return dog{Name: "", Kind: ""}
 	}
 
-	j, _ := json.Marshal(dog)
-	return string(j)
+	return *one
 
 }
