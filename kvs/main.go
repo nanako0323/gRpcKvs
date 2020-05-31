@@ -20,19 +20,9 @@ func main() {
 
 	svc := openDynamoDb()
 
-	input := &dynamodb.GetItemInput{
-		TableName: aws.String("Dog"),
-		Key: map[string]*dynamodb.AttributeValue{
-			"Name": {
-				S: aws.String("Ume"),
-			},
-			"Kind": {
-				S: aws.String("Mix"),
-			},
-		},
-	}
+	selctUme := selectItem("Ume", "Mix")
 
-	result, err := svc.GetItem(input)
+	result, err := selctUme(svc)
 
 	if err != nil {
 		fmt.Println("GetItem Error", err)
@@ -62,4 +52,24 @@ func openDynamoDb() *dynamodb.DynamoDB {
 	svc := dynamodb.New(sess)
 
 	return svc
+}
+
+func selectItem(name string, kind string) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
+
+	return func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
+
+		input := &dynamodb.GetItemInput{
+			TableName: aws.String("Dog"),
+			Key: map[string]*dynamodb.AttributeValue{
+				"Name": {
+					S: aws.String(name),
+				},
+				"Kind": {
+					S: aws.String(kind),
+				},
+			},
+		}
+
+		return svc.GetItem(input)
+	}
 }
