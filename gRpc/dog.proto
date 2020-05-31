@@ -4,6 +4,7 @@ package dog;
 
 service Dog{
     rpc GetMyDog (GetMyDogMessage) returns (GetMyDogResponse) {}
+    rpc AddMyDog (AddMyDogMessage) returns (AddMyDogResponse){}
 }
 
 message GetMyDogMessage{
@@ -13,4 +14,13 @@ message GetMyDogMessage{
 message GetMyDogResponse{
     string name = 1;
     string kind = 2;
+}
+
+message AddMyDogMessage{
+    string name = 1;
+    string kind = 2;
+}
+
+message AddMyDogResponse{
+    string result = 1;
 }

@@ -179,6 +179,14 @@
             <ul>
               
                 <li>
+                  <a href="#dog.AddMyDogMessage"><span class="badge">M</span>AddMyDogMessage</a>
+                </li>
+              
+                <li>
+                  <a href="#dog.AddMyDogResponse"><span class="badge">M</span>AddMyDogResponse</a>
+                </li>
+              
+                <li>
                   <a href="#dog.GetMyDogMessage"><span class="badge">M</span>GetMyDogMessage</a>
                 </li>
               
@@ -207,6 +215,61 @@
       </div>
       <p></p>
 
+      
+        <h3 id="dog.AddMyDogMessage">AddMyDogMessage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>kind</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="dog.AddMyDogResponse">AddMyDogResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>result</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id="dog.GetMyDogMessage">GetMyDogMessage</h3>
         <p></p>
@@ -281,6 +344,13 @@
                 <td>GetMyDog</td>
                 <td><a href="#dog.GetMyDogMessage">GetMyDogMessage</a></td>
                 <td><a href="#dog.GetMyDogResponse">GetMyDogResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>AddMyDog</td>
+                <td><a href="#dog.AddMyDogMessage">AddMyDogMessage</a></td>
+                <td><a href="#dog.AddMyDogResponse">AddMyDogResponse</a></td>
                 <td><p></p></td>
               </tr>
             
