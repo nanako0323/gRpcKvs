@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"gogRpcKvs/kvs/models"
 	"gogRpcKvs/kvs/utils"
 	"os"
 
@@ -10,11 +11,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
-
-type item struct {
-	Name string
-	Kind string
-}
 
 const tableName string = "Dog"
 
@@ -26,7 +22,7 @@ func main() {
 func InsertOne() {
 	svc := utils.OpenDynamoDb()
 
-	data := item{Name: "Tao", Kind: "Cat"}
+	data := models.Dog{Name: "Tao", Kind: "Cat"}
 
 	av := mapToAttributeValue(data)
 
@@ -39,7 +35,7 @@ func exitWithError(err error, msg string) {
 	os.Exit(1)
 }
 
-func mapToAttributeValue(data item) map[string]*dynamodb.AttributeValue {
+func mapToAttributeValue(data models.Dog) map[string]*dynamodb.AttributeValue {
 	av, err := dynamodbattribute.MarshalMap(data)
 
 	if err != nil {

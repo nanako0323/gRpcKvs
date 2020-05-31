@@ -2,6 +2,7 @@ package query
 
 import (
 	"fmt"
+	"gogRpcKvs/kvs/models"
 	"gogRpcKvs/kvs/utils"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -9,17 +10,12 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
-type dog struct {
-	Name string
-	Kind string
-}
-
 //FindOne ... Get Single Item from dynamoDb
 func FindOne(name string) (string, string) {
 
 	svc := utils.OpenDynamoDb()
 
-	ume := dog{Name: "Ume", Kind: "Mix"}
+	ume := models.Dog{Name: "Ume", Kind: "Mix"}
 	selctUme := selectItem(ume)
 
 	result, err := selctUme(svc)
@@ -33,7 +29,7 @@ func FindOne(name string) (string, string) {
 	return item.Name, item.Kind
 }
 
-func selectItem(param dog) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
+func selectItem(param models.Dog) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
 
 	return func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
 
@@ -53,13 +49,13 @@ func selectItem(param dog) func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput
 	}
 }
 
-func formatToDog(result *dynamodb.GetItemOutput) dog {
+func formatToDog(result *dynamodb.GetItemOutput) models.Dog {
 
-	one := &dog{}
+	one := &models.Dog{}
 
 	if err := dynamodbattribute.UnmarshalMap(result.Item, one); err != nil {
 		fmt.Println("Unmarshal Error", err)
-		return dog{Name: "", Kind: ""}
+		return models.Dog{Name: "", Kind: ""}
 	}
 
 	return *one
