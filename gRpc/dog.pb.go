@@ -233,6 +233,116 @@ func (x *AddMyDogResponse) GetResult() string {
 	return ""
 }
 
+type UpdateMyDogMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name   string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Kind   string `protobuf:"bytes,2,opt,name=kind,proto3" json:"kind,omitempty"`
+	Remark string `protobuf:"bytes,3,opt,name=remark,proto3" json:"remark,omitempty"`
+}
+
+func (x *UpdateMyDogMessage) Reset() {
+	*x = UpdateMyDogMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_dog_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateMyDogMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateMyDogMessage) ProtoMessage() {}
+
+func (x *UpdateMyDogMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_dog_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateMyDogMessage.ProtoReflect.Descriptor instead.
+func (*UpdateMyDogMessage) Descriptor() ([]byte, []int) {
+	return file_dog_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *UpdateMyDogMessage) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateMyDogMessage) GetKind() string {
+	if x != nil {
+		return x.Kind
+	}
+	return ""
+}
+
+func (x *UpdateMyDogMessage) GetRemark() string {
+	if x != nil {
+		return x.Remark
+	}
+	return ""
+}
+
+type UpdateMyDogResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Result string `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+}
+
+func (x *UpdateMyDogResponse) Reset() {
+	*x = UpdateMyDogResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_dog_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateMyDogResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateMyDogResponse) ProtoMessage() {}
+
+func (x *UpdateMyDogResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_dog_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateMyDogResponse.ProtoReflect.Descriptor instead.
+func (*UpdateMyDogResponse) Descriptor() ([]byte, []int) {
+	return file_dog_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *UpdateMyDogResponse) GetResult() string {
+	if x != nil {
+		return x.Result
+	}
+	return ""
+}
+
 var File_dog_proto protoreflect.FileDescriptor
 
 var file_dog_proto_rawDesc = []byte{
@@ -250,15 +360,28 @@ var file_dog_proto_rawDesc = []byte{
 	0x01, 0x28, 0x09, 0x52, 0x04, 0x6b, 0x69, 0x6e, 0x64, 0x22, 0x2a, 0x0a, 0x10, 0x41, 0x64, 0x64,
 	0x4d, 0x79, 0x44, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a,
 	0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x72,
-	0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0x7b, 0x0a, 0x03, 0x44, 0x6f, 0x67, 0x12, 0x39, 0x0a, 0x08,
-	0x47, 0x65, 0x74, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x12, 0x14, 0x2e, 0x64, 0x6f, 0x67, 0x2e, 0x47,
-	0x65, 0x74, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x15,
-	0x2e, 0x64, 0x6f, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x39, 0x0a, 0x08, 0x41, 0x64, 0x64, 0x4d, 0x79,
-	0x44, 0x6f, 0x67, 0x12, 0x14, 0x2e, 0x64, 0x6f, 0x67, 0x2e, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x44,
-	0x6f, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x15, 0x2e, 0x64, 0x6f, 0x67, 0x2e,
-	0x41, 0x64, 0x64, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x00, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x73, 0x75, 0x6c, 0x74, 0x22, 0x54, 0x0a, 0x12, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d,
+	0x79, 0x44, 0x6f, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12,
+	0x12, 0x0a, 0x04, 0x6b, 0x69, 0x6e, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6b,
+	0x69, 0x6e, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x6d, 0x61, 0x72, 0x6b, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x6d, 0x61, 0x72, 0x6b, 0x22, 0x2d, 0x0a, 0x13, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x32, 0xbf, 0x01, 0x0a, 0x03, 0x44,
+	0x6f, 0x67, 0x12, 0x39, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x12, 0x14,
+	0x2e, 0x64, 0x6f, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x1a, 0x15, 0x2e, 0x64, 0x6f, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x79,
+	0x44, 0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x39, 0x0a,
+	0x08, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x12, 0x14, 0x2e, 0x64, 0x6f, 0x67, 0x2e,
+	0x41, 0x64, 0x64, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a,
+	0x15, 0x2e, 0x64, 0x6f, 0x67, 0x2e, 0x41, 0x64, 0x64, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x42, 0x0a, 0x0b, 0x55, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x12, 0x17, 0x2e, 0x64, 0x6f, 0x67, 0x2e, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x4d, 0x79, 0x44, 0x6f, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x1a, 0x18, 0x2e, 0x64, 0x6f, 0x67, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x79, 0x44,
+	0x6f, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -273,20 +396,24 @@ func file_dog_proto_rawDescGZIP() []byte {
 	return file_dog_proto_rawDescData
 }
 
-var file_dog_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_dog_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_dog_proto_goTypes = []interface{}{
-	(*GetMyDogMessage)(nil),  // 0: dog.GetMyDogMessage
-	(*GetMyDogResponse)(nil), // 1: dog.GetMyDogResponse
-	(*AddMyDogMessage)(nil),  // 2: dog.AddMyDogMessage
-	(*AddMyDogResponse)(nil), // 3: dog.AddMyDogResponse
+	(*GetMyDogMessage)(nil),     // 0: dog.GetMyDogMessage
+	(*GetMyDogResponse)(nil),    // 1: dog.GetMyDogResponse
+	(*AddMyDogMessage)(nil),     // 2: dog.AddMyDogMessage
+	(*AddMyDogResponse)(nil),    // 3: dog.AddMyDogResponse
+	(*UpdateMyDogMessage)(nil),  // 4: dog.UpdateMyDogMessage
+	(*UpdateMyDogResponse)(nil), // 5: dog.UpdateMyDogResponse
 }
 var file_dog_proto_depIdxs = []int32{
 	0, // 0: dog.Dog.GetMyDog:input_type -> dog.GetMyDogMessage
 	2, // 1: dog.Dog.AddMyDog:input_type -> dog.AddMyDogMessage
-	1, // 2: dog.Dog.GetMyDog:output_type -> dog.GetMyDogResponse
-	3, // 3: dog.Dog.AddMyDog:output_type -> dog.AddMyDogResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: dog.Dog.UpdateMyDog:input_type -> dog.UpdateMyDogMessage
+	1, // 3: dog.Dog.GetMyDog:output_type -> dog.GetMyDogResponse
+	3, // 4: dog.Dog.AddMyDog:output_type -> dog.AddMyDogResponse
+	5, // 5: dog.Dog.UpdateMyDog:output_type -> dog.UpdateMyDogResponse
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -346,6 +473,30 @@ func file_dog_proto_init() {
 				return nil
 			}
 		}
+		file_dog_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateMyDogMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_dog_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateMyDogResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -353,7 +504,7 @@ func file_dog_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_dog_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -381,6 +532,7 @@ const _ = grpc.SupportPackageIsVersion6
 type DogClient interface {
 	GetMyDog(ctx context.Context, in *GetMyDogMessage, opts ...grpc.CallOption) (*GetMyDogResponse, error)
 	AddMyDog(ctx context.Context, in *AddMyDogMessage, opts ...grpc.CallOption) (*AddMyDogResponse, error)
+	UpdateMyDog(ctx context.Context, in *UpdateMyDogMessage, opts ...grpc.CallOption) (*UpdateMyDogResponse, error)
 }
 
 type dogClient struct {
@@ -409,10 +561,20 @@ func (c *dogClient) AddMyDog(ctx context.Context, in *AddMyDogMessage, opts ...g
 	return out, nil
 }
 
+func (c *dogClient) UpdateMyDog(ctx context.Context, in *UpdateMyDogMessage, opts ...grpc.CallOption) (*UpdateMyDogResponse, error) {
+	out := new(UpdateMyDogResponse)
+	err := c.cc.Invoke(ctx, "/dog.Dog/UpdateMyDog", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DogServer is the server API for Dog service.
 type DogServer interface {
 	GetMyDog(context.Context, *GetMyDogMessage) (*GetMyDogResponse, error)
 	AddMyDog(context.Context, *AddMyDogMessage) (*AddMyDogResponse, error)
+	UpdateMyDog(context.Context, *UpdateMyDogMessage) (*UpdateMyDogResponse, error)
 }
 
 // UnimplementedDogServer can be embedded to have forward compatible implementations.
@@ -424,6 +586,9 @@ func (*UnimplementedDogServer) GetMyDog(context.Context, *GetMyDogMessage) (*Get
 }
 func (*UnimplementedDogServer) AddMyDog(context.Context, *AddMyDogMessage) (*AddMyDogResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddMyDog not implemented")
+}
+func (*UnimplementedDogServer) UpdateMyDog(context.Context, *UpdateMyDogMessage) (*UpdateMyDogResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMyDog not implemented")
 }
 
 func RegisterDogServer(s *grpc.Server, srv DogServer) {
@@ -466,6 +631,24 @@ func _Dog_AddMyDog_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Dog_UpdateMyDog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMyDogMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DogServer).UpdateMyDog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/dog.Dog/UpdateMyDog",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DogServer).UpdateMyDog(ctx, req.(*UpdateMyDogMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Dog_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "dog.Dog",
 	HandlerType: (*DogServer)(nil),
@@ -477,6 +660,10 @@ var _Dog_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddMyDog",
 			Handler:    _Dog_AddMyDog_Handler,
+		},
+		{
+			MethodName: "UpdateMyDog",
+			Handler:    _Dog_UpdateMyDog_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

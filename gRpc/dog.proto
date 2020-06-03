@@ -3,8 +3,9 @@ syntax = "proto3";
 package dog;
 
 service Dog{
-    rpc GetMyDog (GetMyDogMessage) returns (GetMyDogResponse) {}
-    rpc AddMyDog (AddMyDogMessage) returns (AddMyDogResponse){}
+    rpc GetMyDog    (GetMyDogMessage)    returns (GetMyDogResponse) {}
+    rpc AddMyDog    (AddMyDogMessage)    returns (AddMyDogResponse) {}
+    rpc UpdateMyDog (UpdateMyDogMessage) returns (UpdateMyDogResponse) {}
 }
 
 message GetMyDogMessage{
@@ -22,5 +23,15 @@ message AddMyDogMessage{
 }
 
 message AddMyDogResponse{
+    string result = 1;
+}
+
+message UpdateMyDogMessage{
+    string name = 1;
+    string kind = 2;
+    string remark = 3;
+}
+
+message UpdateMyDogResponse{
     string result = 1;
 }
