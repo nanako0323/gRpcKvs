@@ -6,6 +6,7 @@ import (
 	pb "gogRpcKvs/gRpc"
 	"gogRpcKvs/kvs/create"
 	"gogRpcKvs/kvs/query"
+	"gogRpcKvs/kvs/update"
 )
 
 // MyDogService ...struct
@@ -39,4 +40,19 @@ func (s *MyDogService) AddMyDog(ctx context.Context, message *pb.AddMyDogMessage
 	return &pb.AddMyDogResponse{
 		Result: "success",
 	}, nil
+}
+
+// UpdateMyDog ... update remark from key
+func (s *MyDogService) UpdateMyDog(ctx context.Context, message *pb.UpdateMyDogMessage) (*pb.UpdateMyDogResponse, error) {
+
+	success := update.DogRemark(message.Name, message.Kind, message.Remark)
+
+	if !success {
+		return nil, errors.New("Failed Update Item")
+	}
+
+	return &pb.UpdateMyDogResponse{
+		Result: "success",
+	}, nil
+
 }

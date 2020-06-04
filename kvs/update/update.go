@@ -1,47 +1,23 @@
-package main
+package update
 
 import (
 	"fmt"
+	"gogRpcKvs/kvs/models"
 	"gogRpcKvs/kvs/utils"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-func main() {
-	result := Update()
-	fmt.Println(result)
-}
-
-// Update ... get key param and update param
-// return bool
-func Update() bool {
+//DogRemark ... update remark from key
+func DogRemark(name string, kind string, remark string) bool {
 	//begin session
 	svc := utils.OpenDynamoDb()
 
-	tableName := "Dog"
-	dogName := "Kojiro"
-	dogKind := "Labrador Retriever"
+	key := models.Dog{Name: name, Kind: kind}
 
 	//set param
-	input := &dynamodb.UpdateItemInput{
-		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-			":r": {
-				S: aws.String("He is dead."),
-			},
-		},
-		TableName: aws.String(tableName),
-		Key: map[string]*dynamodb.AttributeValue{
-			"Name": {
-				S: aws.String(dogName),
-			},
-			"Kind": {
-				S: aws.String(dogKind),
-			},
-		},
-		ReturnValues:     aws.String("UPDATED_NEW"),
-		UpdateExpression: aws.String("set Remark = :r"),
-	}
+	input := setUpdateParam(key, remark)
 
 	//update
 	_, err := svc.UpdateItem(input)
@@ -53,4 +29,27 @@ func Update() bool {
 	}
 
 	return true
+}
+
+func setUpdateParam(dog models.Dog, remark string) *dynamodb.UpdateItemInput {
+
+	return &dynamodb.UpdateItemInput{
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":r": {
+				S: aws.String(remark),
+			},
+		},
+		TableName: aws.String(models.TableName),
+		Key: map[string]*dynamodb.AttributeValue{
+			"Name": {
+				S: aws.String(dog.Name),
+			},
+			"Kind": {
+				S: aws.String(dog.Kind),
+			},
+		},
+		ReturnValues:     aws.String("UPDATED_NEW"),
+		UpdateExpression: aws.String("set Remark = :r"),
+	}
+
 }

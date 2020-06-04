@@ -34,7 +34,7 @@ func selectItem(param models.Dog) func(svc *dynamodb.DynamoDB) (*dynamodb.GetIte
 	return func(svc *dynamodb.DynamoDB) (*dynamodb.GetItemOutput, error) {
 
 		input := &dynamodb.GetItemInput{
-			TableName: aws.String("Dog"),
+			TableName: aws.String(models.TableName),
 			Key: map[string]*dynamodb.AttributeValue{
 				"Name": {
 					S: aws.String(param.Name),
