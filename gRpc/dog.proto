@@ -6,6 +6,7 @@ service Dog{
     rpc GetMyDog    (GetMyDogMessage)    returns (GetMyDogResponse) {}
     rpc AddMyDog    (AddMyDogMessage)    returns (AddMyDogResponse) {}
     rpc UpdateMyDog (UpdateMyDogMessage) returns (UpdateMyDogResponse) {}
+    rpc DeleteMyDog (DeleteMyDogMessage) returns (DeleteMyDogResponse) {}
 }
 
 message GetMyDogMessage{
@@ -33,5 +34,14 @@ message UpdateMyDogMessage{
 }
 
 message UpdateMyDogResponse{
+    string result = 1;
+}
+
+message DeleteMyDogMessage{
+    string name = 1;
+    string kind = 2;
+}
+
+message DeleteMyDogResponse{
     string result = 1;
 }

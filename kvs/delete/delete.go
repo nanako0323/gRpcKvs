@@ -1,4 +1,4 @@
-package main
+package delete
 
 import (
 	"fmt"
@@ -9,28 +9,16 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
-func main() {
-	result := delete("Mako", "Human")
-	fmt.Println(result)
-}
-
-func delete(name string, kind string) bool {
+//Dog ... delete item from key
+func Dog(name string, kind string) bool {
 
 	// open dynamodb session
 	svc := utils.OpenDynamoDb()
 
+	key := models.Dog{Name: name, Kind: kind}
+
 	//create delete param
-	input := &dynamodb.DeleteItemInput{
-		Key: map[string]*dynamodb.AttributeValue{
-			"Name": {
-				S: aws.String(name),
-			},
-			"Kind": {
-				S: aws.String(kind),
-			},
-		},
-		TableName: aws.String(models.TableName),
-	}
+	input := setDeleteParam(key)
 
 	//execute
 	_, err := svc.DeleteItem(input)
@@ -41,4 +29,18 @@ func delete(name string, kind string) bool {
 	}
 
 	return true
+}
+
+func setDeleteParam(dog models.Dog) *dynamodb.DeleteItemInput {
+	return &dynamodb.DeleteItemInput{
+		Key: map[string]*dynamodb.AttributeValue{
+			"Name": {
+				S: aws.String(dog.Name),
+			},
+			"Kind": {
+				S: aws.String(dog.Kind),
+			},
+		},
+		TableName: aws.String(models.TableName),
+	}
 }

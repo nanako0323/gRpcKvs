@@ -5,6 +5,7 @@ import (
 	"errors"
 	pb "gogRpcKvs/gRpc"
 	"gogRpcKvs/kvs/create"
+	"gogRpcKvs/kvs/delete"
 	"gogRpcKvs/kvs/query"
 	"gogRpcKvs/kvs/update"
 )
@@ -55,4 +56,18 @@ func (s *MyDogService) UpdateMyDog(ctx context.Context, message *pb.UpdateMyDogM
 		Result: "success",
 	}, nil
 
+}
+
+// DeleteMyDog ...
+func (s *MyDogService) DeleteMyDog(ctx context.Context, message *pb.DeleteMyDogMessage) (*pb.DeleteMyDogResponse, error) {
+
+	success := delete.Dog(message.Name, message.Kind)
+
+	if !success {
+		return nil, errors.New("Failed Delete Item")
+	}
+
+	return &pb.DeleteMyDogResponse{
+		Result: "success",
+	}, nil
 }
