@@ -11,8 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
-const tableName string = "Dog"
-
 // InsertOne ... insert one data to dynamoDb.
 // If succeed, return true
 func InsertOne(name string, kind string) bool {
@@ -50,7 +48,7 @@ func mapToAttributeValue(data models.Dog) (map[string]*dynamodb.AttributeValue, 
 func putItem(av map[string]*dynamodb.AttributeValue, svc *dynamodb.DynamoDB) bool {
 	input := &dynamodb.PutItemInput{
 		Item:      av,
-		TableName: aws.String(tableName),
+		TableName: aws.String(models.TableName),
 	}
 
 	_, puterr := svc.PutItem(input)

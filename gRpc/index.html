@@ -187,11 +187,27 @@
                 </li>
               
                 <li>
+                  <a href="#dog.DeleteMyDogMessage"><span class="badge">M</span>DeleteMyDogMessage</a>
+                </li>
+              
+                <li>
+                  <a href="#dog.DeleteMyDogResponse"><span class="badge">M</span>DeleteMyDogResponse</a>
+                </li>
+              
+                <li>
                   <a href="#dog.GetMyDogMessage"><span class="badge">M</span>GetMyDogMessage</a>
                 </li>
               
                 <li>
                   <a href="#dog.GetMyDogResponse"><span class="badge">M</span>GetMyDogResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#dog.UpdateMyDogMessage"><span class="badge">M</span>UpdateMyDogMessage</a>
+                </li>
+              
+                <li>
+                  <a href="#dog.UpdateMyDogResponse"><span class="badge">M</span>UpdateMyDogResponse</a>
                 </li>
               
               
@@ -271,6 +287,61 @@
 
         
       
+        <h3 id="dog.DeleteMyDogMessage">DeleteMyDogMessage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>kind</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="dog.DeleteMyDogResponse">DeleteMyDogResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>result</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="dog.GetMyDogMessage">GetMyDogMessage</h3>
         <p></p>
 
@@ -326,6 +397,68 @@
 
         
       
+        <h3 id="dog.UpdateMyDogMessage">UpdateMyDogMessage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>kind</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>remark</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="dog.UpdateMyDogResponse">UpdateMyDogResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>result</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -351,6 +484,20 @@
                 <td>AddMyDog</td>
                 <td><a href="#dog.AddMyDogMessage">AddMyDogMessage</a></td>
                 <td><a href="#dog.AddMyDogResponse">AddMyDogResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateMyDog</td>
+                <td><a href="#dog.UpdateMyDogMessage">UpdateMyDogMessage</a></td>
+                <td><a href="#dog.UpdateMyDogResponse">UpdateMyDogResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteMyDog</td>
+                <td><a href="#dog.DeleteMyDogMessage">DeleteMyDogMessage</a></td>
+                <td><a href="#dog.DeleteMyDogResponse">DeleteMyDogResponse</a></td>
                 <td><p></p></td>
               </tr>
             
